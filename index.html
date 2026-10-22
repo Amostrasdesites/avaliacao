@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Padaria Vila Moreira — Desde 1967</title>
+    <title>Padaria Vila Moreira — Desde 1967 | Guarulhos/SP</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -15,6 +15,8 @@
             --cor-texto: #2C2C2C;
             --cor-fundo: #FFFAF5;
             --cor-branca: #FFFFFF;
+            --cor-sucesso: #25D366;
+            --cor-erro: #E53935;
             --sombra-leve: 0 4px 20px rgba(139, 69, 19, 0.08);
             --transicao-padrao: all 0.55s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -41,6 +43,132 @@
             flex-direction: column;
         }
 
+        /* TELA DE ENTRADA */
+        .tela-entrada {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--cor-destaque) 0%, var(--cor-fundo) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .tela-entrada.oculta {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .caixa-entrada {
+            background: var(--cor-branca);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(139, 69, 19, 0.15);
+            max-width: 440px;
+            width: 90%;
+            text-align: center;
+            animation: aparecer 0.6s ease forwards;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        @keyframes aparecer {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .caixa-entrada h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .caixa-entrada p.subtitulo {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .icone-entrada {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .campo-entrada {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--cor-destaque);
+            border-radius: 12px;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            transition: var(--transicao-padrao);
+        }
+
+        .campo-entrada:focus {
+            outline: none;
+            border-color: var(--cor-secundaria);
+        }
+
+        .campo-entrada.invalido {
+            border-color: var(--cor-erro);
+            background: rgba(229, 57, 53, 0.03);
+        }
+
+        .aviso-erro-entrada {
+            color: var(--cor-erro);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            min-height: 1.2rem;
+            display: none;
+        }
+
+        .aviso-erro-entrada.mostrar {
+            display: block;
+        }
+
+        .botao-entrada {
+            width: 100%;
+            padding: 1rem;
+            background: var(--cor-primaria);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transicao-padrao);
+        }
+
+        .botao-entrada:hover {
+            background: #6B3410;
+            transform: translateY(-2px);
+        }
+
+        .dica-entrada {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 1rem;
+        }
+
+        .info-mesmonome {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* CONTEÚDO DO SITE */
+        .conteudo-site {
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .conteudo-site.visivel {
+            opacity: 1;
+        }
+
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
             color: var(--cor-primaria);
@@ -63,6 +191,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .logo {
@@ -71,6 +201,21 @@
             font-weight: 700;
             color: var(--cor-primaria);
             text-decoration: none;
+        }
+
+        .saudacao-usuario {
+            font-size: 0.9rem;
+            color: var(--cor-primaria);
+            font-weight: 500;
+            padding: 0.3rem 0.8rem;
+            background: rgba(212, 165, 116, 0.2);
+            border-radius: 20px;
+        }
+
+        .identificador-usuario {
+            font-size: 0.75rem;
+            color: #999;
+            margin-left: 0.3rem;
         }
 
         .nav-links {
@@ -122,9 +267,6 @@
             overflow: hidden;
         }
 
-        /* ======================================
-           TRANSIÇÕES VOLTARAM! 🎉
-           ====================================== */
         .pagina {
             opacity: 0;
             transform: translateY(25px);
@@ -165,7 +307,6 @@
         .hero h1 {
             font-size: clamp(2.5rem, 6vw, 4rem);
             margin-bottom: 1rem;
-            animation: suaveEntrada 1s ease forwards;
         }
 
         .hero-subtitulo {
@@ -176,8 +317,6 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            animation: suaveEntrada 1s ease 0.2s forwards;
-            opacity: 0;
         }
 
         .hero-destaque {
@@ -189,13 +328,6 @@
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
             margin-bottom: 2rem;
-            animation: suaveEntrada 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-
-        @keyframes suaveEntrada {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .botoes-acao {
@@ -203,8 +335,6 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: suaveEntrada 1s ease 0.6s forwards;
-            opacity: 0;
         }
 
         .botao {
@@ -230,6 +360,16 @@
             background-color: #6B3410;
             transform: translateY(-2px);
             box-shadow: var(--sombra-leve);
+        }
+
+        .botao-whatsapp {
+            background-color: var(--cor-sucesso);
+            color: white;
+        }
+
+        .botao-whatsapp:hover {
+            background-color: #128C7E;
+            transform: translateY(-2px);
         }
 
         .botao-secundario {
@@ -398,7 +538,7 @@
         .produto-botao {
             width: 100%;
             padding: 0.7rem;
-            background: #25D366;
+            background: var(--cor-sucesso);
             color: white;
             border: none;
             border-radius: 8px;
@@ -424,29 +564,13 @@
             margin: 0 auto 2rem;
         }
 
-        .form-grupo {
+        .aviso-nome {
+            background: rgba(37, 211, 102, 0.1);
+            border-left: 4px solid var(--cor-sucesso);
+            padding: 1rem;
             margin-bottom: 1.5rem;
-        }
-
-        .form-label {
+            border-radius: 0 8px 8px 0;
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--cor-primaria);
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 0.9rem;
-            border: 2px solid var(--cor-destaque);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: var(--transicao-padrao);
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--cor-secundaria);
         }
 
         .redes {
@@ -489,19 +613,6 @@
             text-decoration: underline;
         }
 
-        .aviso-nome {
-            background: rgba(37, 211, 102, 0.1);
-            border-left: 4px solid #25D366;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0 8px 8px 0;
-            display: none;
-        }
-
-        .aviso-nome.mostrar {
-            display: block;
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 position: absolute;
@@ -540,319 +651,420 @@
             .pagina {
                 position: relative;
             }
+
+            .saudacao-usuario {
+                order: 3;
+                width: 100%;
+                text-align: center;
+                margin-top: 0.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navegação -->
-    <nav class="navegacao">
-        <div class="nav-conteudo">
-            <a href="#" class="logo" onclick="irParaPagina('inicio')">🥖 Vila Moreira</a>
-            <button class="menu-botao" onclick="alternarMenu()">☰</button>
-            <ul class="nav-links" id="menuPrincipal">
-                <li><a href="#" onclick="irParaPagina('inicio')">Início</a></li>
-                <li><a href="#" onclick="irParaPagina('sobre')">Conheça Nós</a></li>
-                <li><a href="#" onclick="irParaPagina('catalogo')">Catálogo</a></li>
-                <li><a href="#" onclick="irParaPagina('contato')">Contato</a></li>
-            </ul>
+
+    <!-- TELA DE ENTRADA -->
+    <div class="tela-entrada" id="telaEntrada">
+        <div class="caixa-entrada">
+            <div class="icone-entrada">🥖</div>
+            <h1>Bem-vindo(a) à Padaria Vila Moreira!</h1>
+            <p class="subtitulo">Digite seu nome completo para acessar nosso catálogo e fazer pedidos</p>
+            
+            <input 
+                type="text" 
+                id="campoNomeCompleto" 
+                class="campo-entrada" 
+                placeholder="Ex: Maria da Silva Souza"
+                autocomplete="name"
+            >
+            
+            <p class="aviso-erro-entrada" id="avisoErroEntrada">
+                ⚠️ Por favor, digite seu nome completo (nome e sobrenome)
+            </p>
+            
+            <button class="botao-entrada" id="botaoEntrar">Entrar e Ver Produtos</button>
+            
+            <p class="dica-entrada">
+                ✅ Seu acesso fica salvo automaticamente
+            </p>
+            <p class="info-mesmonome">
+                Mesmo nome de outra pessoa? Sem problema! Cada cliente recebe um número único.
+            </p>
         </div>
-    </nav>
+    </div>
 
-    <!-- Conteúdo Principal -->
-    <main class="conteudo-principal">
-        <!-- PÁGINA INÍCIO -->
-        <section class="pagina ativa" id="pagina-inicio">
-            <div class="hero">
-                <div class="hero-destaque">✨ Desde 1967 — A tradição de Guarulhos</div>
-                <h1>Padaria Vila Moreira</h1>
-                <p class="hero-subtitulo">O verdadeiro sabor da padaria raiz, feito com carinho, ingredientes selecionados e receitas que passam de geração em geração.</p>
-                <div class="botoes-acao">
-                    <a href="#" class="botao botao-primario" onclick="irParaPagina('sobre')">Conhecer a Casa</a>
-                    <a href="#" class="botao botao-secundario" onclick="irParaPagina('catalogo')">Ver Produtos</a>
-                </div>
+    <!-- CONTEÚDO DO SITE -->
+    <div class="conteudo-site" id="conteudoSite">
+
+        <!-- Navegação -->
+        <nav class="navegacao">
+            <div class="nav-conteudo">
+                <a href="#" class="logo" onclick="irParaPagina('inicio')">🥖 Vila Moreira</a>
+                <span class="saudacao-usuario" id="saudacaoUsuario">
+                    👋 Bem-vindo(a)!
+                </span>
+                <button class="menu-botao" onclick="alternarMenu()">☰</button>
+                <ul class="nav-links" id="menuPrincipal">
+                    <li><a href="#" onclick="irParaPagina('inicio')">Início</a></li>
+                    <li><a href="#" onclick="irParaPagina('sobre')">Conheça Nós</a></li>
+                    <li><a href="#" onclick="irParaPagina('catalogo')">Catálogo</a></li>
+                    <li><a href="#" onclick="irParaPagina('contato')">Fazer Pedido</a></li>
+                </ul>
             </div>
+        </nav>
 
-            <div class="secao">
-                <div class="sobre-conteudo">
-                    <div class="sobre-texto">
-                        <h2>Venha nos visitar!</h2>
-                        <p>Estamos no coração de Guarulhos, servindo pães fresquinhos, bolos caseiros, salgados quentinhos e aquele café que faz a diferença no seu dia.</p>
-                        <p class="destaque-ano">Mais de 55 anos de história ❤️</p>
-                        <p>Cada pão sai do forno com amor, como sempre foi feito — do jeito tradicional, simples e perfeito.</p>
-                    </div>
-                    <div class="info-caixa">
-                        <div class="info-item">
-                            <div class="info-titulo">📍 Endereço</div>
-                            <div>Rua Silvestre Vasconcelos Calmon, 137<br>Vila Pedro Moreira, Guarulhos — SP<br>CEP: 07020-001</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-titulo">⏰ Horário</div>
-                            <div>Segunda a Sábado: 5h às 22h<br>Domingo: 5h30 às 20h</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-titulo">📞 Telefone</div>
-                            <div>(11) 2409-3731</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PÁGINA SOBRE -->
-        <section class="pagina" id="pagina-sobre">
-            <div class="secao">
-                <h2 class="categoria-titulo">Nossa História</h2>
-                <div class="sobre-conteudo">
-                    <div class="sobre-texto">
-                        <p>A Padaria Vila Moreira nasceu em <strong>1967</strong>, no bairro de Vila Pedro Moreira, em Guarulhos. Há mais de cinco décadas, fazemos parte da rotina e do coração da comunidade.</p>
-                        <p>Mantemos viva a tradição do pão francês quentinho, do café forte e da comida feita na hora, com ingredientes escolhidos a dedo. Não temos segredos: fazemos simples, bem feito e com amor.</p>
-                        <p>Hoje, como há 55 anos, abrimos às 5h da manhã para receber você. Seja para o café antes do trabalho, o lanche da tarde ou aquele pãozinho para levar para casa — estamos aqui, sempre de portas abertas.</p>
-                        <p class="destaque-ano">Venha conhecer! É mais do que uma padaria. É a sua casa. 🥖</p>
-                    </div>
-                    <div class="info-caixa">
-                        <h3 style="margin-bottom: 1rem;">📋 Informações</h3>
-                        <div class="info-item">
-                            <div class="info-titulo">Fundação</div>
-                            <div>1967 — mais de 55 anos de tradição</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-titulo">Localização</div>
-                            <div>Rua Silvestre Vasconcelos Calmon, 137<br>Vila Pedro Moreira — Guarulhos/SP</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-titulo">Funcionamento</div>
-                            <div>Seg–Sáb: 5h–22h | Dom: 5h30–20h</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-titulo">Nota no Google</div>
-                            <div>⭐ 4.5 — mais de 430 avaliações</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PÁGINA CATÁLOGO -->
-        <section class="pagina" id="pagina-catalogo">
-            <div class="secao">
-                <h2 class="categoria-titulo">Nosso Catálogo</h2>
-
-                <div class="form-secao">
-                    <h3 style="margin-bottom: 1rem;">👋 Antes de tudo, diga seu nome</h3>
-                    <div class="aviso-nome" id="avisoNome">
-                        ✅ Salvo! Agora quando escolher um produto, já sabemos quem é você.
-                    </div>
-                    <div class="form-grupo">
-                        <label class="form-label" for="campoNome">Seu nome</label>
-                        <input type="text" id="campoNome" class="form-input" placeholder="Digite seu nome..." oninput="salvarNome(this.value)">
+        <!-- Conteúdo Principal -->
+        <main class="conteudo-principal">
+            <!-- PÁGINA INÍCIO -->
+            <section class="pagina ativa" id="pagina-inicio">
+                <div class="hero">
+                    <div class="hero-destaque">✨ Desde 1967 — A tradição de Guarulhos</div>
+                    <h1>Padaria Vila Moreira</h1>
+                    <p class="hero-subtitulo">Pães fresquinhos, bolos caseiros, salgados quentes e aquele café que faz a diferença. Feito com amor, todos os dias.</p>
+                    <div class="botoes-acao">
+                        <a href="#" class="botao botao-primario" onclick="irParaPagina('catalogo')">🛒 Ver Catálogo</a>
+                        <a href="#" class="botao botao-whatsapp" onclick="abrirWhatsContato()">💬 Fazer Pedido</a>
                     </div>
                 </div>
 
-                <div class="categorias">
-                    <button class="categoria-botao ativa" onclick="filtrarCategoria('todos', this)">Todos</button>
-                    <button class="categoria-botao" onclick="filtrarCategoria('paes', this)">Pães</button>
-                    <button class="categoria-botao" onclick="filtrarCategoria('doces', this)">Doces & Bolos</button>
-                    <button class="categoria-botao" onclick="filtrarCategoria('lanches', this)">Lanches</button>
-                    <button class="categoria-botao" onclick="filtrarCategoria('bebidas', this)">Bebidas</button>
-                </div>
-
-                <div class="grade-produtos" id="gradeProdutos">
-                    <div class="produto-card" data-categoria="paes">
-                        <div class="produto-imagem">🥖</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Pão Francês</h3>
-                            <p class="produto-desc">Crocante por fora, macio por dentro — o clássico de sempre</p>
-                            <p class="produto-valor">R$ 0,80 / unidade</p>
-                            <button class="produto-botao" onclick="interessado('Pão Francês', 'R$ 0,80 / unidade')">
-                                💬 Tenho interesse
-                            </button>
+                <div class="secao">
+                    <div class="sobre-conteudo">
+                        <div class="sobre-texto">
+                            <h2>Seja muito bem-vindo(a)!</h2>
+                            <p>Estamos no coração do bairro Vila Pedro Moreira, em Guarulhos, servindo você desde 1967.</p>
+                            <p class="destaque-ano">Mais de 55 anos de sabor e tradição ❤️</p>
+                            <p>Pães saídos do forno o dia todo, receitas caseiras, ingredientes selecionados e aquele atendimento amigo que você merece.</p>
+                            <p>Faça seu pedido pelo WhatsApp ou venha nos visitar! Estamos de portas abertas para receber você e sua família.</p>
                         </div>
-                    </div>
-
-                    <div class="produto-card" data-categoria="paes">
-                        <div class="produto-imagem">🍞</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Pão de Leite</h3>
-                            <p class="produto-desc">Fofinho, doce na medida — feito aqui na casa</p>
-                            <p class="produto-valor">R$ 6,00 / unidade</p>
-                            <button class="produto-botao" onclick="interessado('Pão de Leite', 'R$ 6,00 / unidade')">
-                                💬 Tenho interesse
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="produto-card" data-categoria="doces">
-                        <div class="produto-imagem">🍫</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Bomba de Ovomaltine</h3>
-                            <p class="produto-desc">Recheada, cremosa, irresistível</p>
-                            <p class="produto-valor">R$ 10,00</p>
-                            <button class="produto-botao" onclick="interessado('Bomba de Ovomaltine', 'R$ 10,00')">
-                                💬 Tenho interesse
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="produto-card" data-categoria="doces">
-                        <div class="produto-imagem">🍰</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Tortinha de Limão</h3>
-                            <p class="produto-desc">Azedinha, doce e fresquinha</p>
-                            <p class="produto-valor">R$ 10,00</p>
-                            <button class="produto-botao" onclick="interessado('Tortinha de Limão', 'R$ 10,00')">
-                                💬 Tenho interesse
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="produto-card" data-categoria="lanches">
-                        <div class="produto-imagem">🥪</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Pão na Chapa</h3>
-                            <p class="produto-desc">Manteiga derretida, pão quentinho</p>
-                            <p class="produto-valor">R$ 7,50</p>
-                            <button class="produto-botao" onclick="interessado('Pão na Chapa', 'R$ 7,50')">
-                                💬 Tenho interesse
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="produto-card" data-categoria="lanches">
-                        <div class="produto-imagem">🥓</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Pão com Ovo, Queijo e Bacon</h3>
-                            <p class="produto-desc">Completo e saboroso</p>
-                            <p class="produto-valor">R$ 16,50</p>
-                            <button class="produto-botao" onclick="interessado('Pão com Ovo, Queijo e Bacon', 'R$ 16,50')">
-                                💬 Tenho interesse
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="produto-card" data-categoria="lanches">
-                        <div class="produto-imagem">🥩</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Mortadela com Queijo e Vinagrete</h3>
-                            <p class="produto-desc">Famoso e aprovado por todos</p>
-                            <p class="produto-valor">R$ 24,00</p>
-                            <button class="produto-botao" onclick="interessado('Mortadela com Queijo e Vinagrete', 'R$ 24,00')">
-                                💬 Tenho interesse
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="produto-card" data-categoria="bebidas">
-                        <div class="produto-imagem">☕</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Café com Leite</h3>
-                            <p class="produto-desc">O clássico da manhã</p>
-                            <p class="produto-valor">R$ 5,00</p>
-                            <button class="produto-botao" onclick="interessado('Café com Leite', 'R$ 5,00')">
-                                💬 Tenho interesse
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="produto-card" data-categoria="bebidas">
-                        <div class="produto-imagem">🍫</div>
-                        <div class="produto-conteudo">
-                            <h3 class="produto-nome">Chocolate Gelado Batido</h3>
-                            <p class="produto-desc">Cremoso e geladinho</p>
-                            <p class="produto-valor">R$ 10,00</p>
-                            <button class="produto-botao" onclick="interessado('Chocolate Gelado Batido', 'R$ 10,00')">
-                                💬 Tenho interesse
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PÁGINA CONTATO -->
-        <section class="pagina" id="pagina-contato">
-            <div class="secao">
-                <h2 class="categoria-titulo">Fale Conosco</h2>
-
-                <div class="sobre-conteudo">
-                    <div class="form-secao">
-                        <h3 style="margin-bottom: 1.5rem;">📬 Nossos canais</h3>
-                        <p style="margin-bottom: 1.5rem;">Siga-nos nas redes sociais e fale conosco pelo WhatsApp. Será um prazer atendê-lo!</p>
-
-                        <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
-                            <a href="https://www.instagram.com/padariavilamoreira" target="_blank" class="botao botao-secundario" style="justify-content: center;">
-                                📷 @padariavilamoreira
-                            </a>
-                            <a href="https://www.facebook.com/search/top?q=padaria%20vila%20moreira" target="_blank" class="botao botao-secundario" style="justify-content: center;">
-                                📘 Facebook — Padaria Vila Moreira
-                            </a>
-                            <a id="linkWhatsContato" href="https://wa.me/5511999999999?text=Olá! Conheci o site e gostaria de saber mais." target="_blank" class="botao botao-primario" style="justify-content: center; background: #25D366;">
-                                💬 Falar no WhatsApp
-                            </a>
-                        </div>
-
                         <div class="info-caixa">
                             <div class="info-item">
                                 <div class="info-titulo">📍 Endereço</div>
-                                <div>Rua Silvestre Vasconcelos Calmon, 137 — Vila Pedro Moreira<br>Guarulhos – SP | CEP: 07020-001</div>
-                            </div>
-                            <div class="info-item">
-                                <div class="info-titulo">📞 Telefone</div>
-                                <div>(11) 2409-3731</div>
+                                <div>Rua Silvestre Vasconcelos Calmon, 137<br>Vila Pedro Moreira, Guarulhos — SP<br>CEP: 07020-001</div>
                             </div>
                             <div class="info-item">
                                 <div class="info-titulo">⏰ Funcionamento</div>
                                 <div>Segunda a Sábado: 5h às 22h<br>Domingo: 5h30 às 20h</div>
                             </div>
+                            <div class="info-item">
+                                <div class="info-titulo">📞 WhatsApp / Telefone</div>
+                                <div>(11) 2409-3731</div>
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <a href="#" class="botao botao-whatsapp" onclick="abrirWhatsContato()" style="width: 100%; justify-content: center;">
+                                    💬 Falar Agora
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <!-- RODAPÉ — Sempre no final! -->
-    <footer class="rodape">
-        <p><strong>Padaria Vila Moreira</strong> — Desde 1967, o sabor que faz parte da sua manhã ☀️</p>
-        <div class="redes">
-            <a href="https://www.instagram.com/padariavilamoreira" target="_blank" class="rede-link" title="Instagram">📷</a>
-            <a href="https://www.facebook.com/search/top?q=padaria%20vila%20moreira" target="_blank" class="rede-link" title="Facebook">📘</a>
-            <a href="https://wa.me/5511999999999?text=Olá! Conheci o site e gostaria de saber mais sobre os produtos." target="_blank" class="rede-link" title="WhatsApp">💬</a>
-        </div>
-    </footer>
+            <!-- PÁGINA SOBRE -->
+            <section class="pagina" id="pagina-sobre">
+                <div class="secao">
+                    <h2 class="categoria-titulo">Nossa História</h2>
+                    <div class="sobre-conteudo">
+                        <div class="sobre-texto">
+                            <p>A Padaria Vila Moreira nasceu em <strong>1967</strong>, aqui no bairro de Vila Pedro Moreira, em Guarulhos. Há mais de cinco décadas, fazemos parte da sua rotina e do coração da comunidade.</p>
+                            <p>Mantemos viva a tradição do pão francês quentinho, do café forte e da comida feita na hora, com receitas que passam de geração em geração.</p>
+                            <p>Hoje, como há 55 anos, abrimos às 5h da manhã para receber você. Seja para o café antes do trabalho, o lanche da tarde ou aquele pãozinho para levar para casa — estamos sempre aqui, de portas abertas.</p>
+                            <p class="destaque-ano">Venha nos conhecer! É mais do que uma padaria. É a sua casa. 🥖</p>
+                        </div>
+                        <div class="info-caixa">
+                            <h3 style="margin-bottom: 1rem;">📋 Informações</h3>
+                            <div class="info-item">
+                                <div class="info-titulo">Desde</div>
+                                <div>1967 — 55+ anos de tradição</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-titulo">Onde Estamos</div>
+                                <div>Rua Silvestre Vasconcelos Calmon, 137<br>Vila Pedro Moreira — Guarulhos/SP</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-titulo">Horário</div>
+                                <div>Seg–Sáb: 5h–22h<br>Domingo: 5h30–20h</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-titulo">Avaliação</div>
+                                <div>⭐ 4.5 — mais de 430 avaliações no Google</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PÁGINA CATÁLOGO -->
+            <section class="pagina" id="pagina-catalogo">
+                <div class="secao">
+                    <h2 class="categoria-titulo">Nosso Catálogo</h2>
+
+                    <div class="form-secao">
+                        <h3 style="margin-bottom: 1rem;">👋 Olá!</h3>
+                        <div class="aviso-nome">
+                            ✅ Identificado(a) como: <strong id="nomeUsuarioExibicao"></strong>
+                        </div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                            Clique em "Tenho interesse" em qualquer produto e já enviamos sua mensagem pelo WhatsApp!
+                        </p>
+                    </div>
+
+                    <div class="categorias">
+                        <button class="categoria-botao ativa" onclick="filtrarCategoria('todos', this)">Todos</button>
+                        <button class="categoria-botao" onclick="filtrarCategoria('paes', this)">Pães</button>
+                        <button class="categoria-botao" onclick="filtrarCategoria('doces', this)">Doces & Bolos</button>
+                        <button class="categoria-botao" onclick="filtrarCategoria('lanches', this)">Lanches</button>
+                        <button class="categoria-botao" onclick="filtrarCategoria('bebidas', this)">Bebidas</button>
+                    </div>
+
+                    <div class="grade-produtos" id="gradeProdutos">
+                        <div class="produto-card" data-categoria="paes">
+                            <div class="produto-imagem">🥖</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Pão Francês</h3>
+                                <p class="produto-desc">Crocante por fora, macio por dentro — saído do forno</p>
+                                <p class="produto-valor">R$ 0,80 / unidade</p>
+                                <button class="produto-botao" onclick="interessado('Pão Francês', 'R$ 0,80 / unidade')">
+                                    💬 Tenho interesse
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="produto-card" data-categoria="paes">
+                            <div class="produto-imagem">🍞</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Pão de Leite</h3>
+                                <p class="produto-desc">Fofinho, doce na medida — perfeito para o café</p>
+                                <p class="produto-valor">R$ 6,00 / unidade</p>
+                                <button class="produto-botao" onclick="interessado('Pão de Leite', 'R$ 6,00 / unidade')">
+                                    💬 Tenho interesse
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="produto-card" data-categoria="doces">
+                            <div class="produto-imagem">🍫</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Bomba de Ovomaltine</h3>
+                                <p class="produto-desc">Recheada, cremosa e irresistível</p>
+                                <p class="produto-valor">R$ 10,00</p>
+                                <button class="produto-botao" onclick="interessado('Bomba de Ovomaltine', 'R$ 10,00')">
+                                    💬 Tenho interesse
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="produto-card" data-categoria="doces">
+                            <div class="produto-imagem">🍰</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Tortinha de Limão</h3>
+                                <p class="produto-desc">Azedinha, fresquinha e caseira</p>
+                                <p class="produto-valor">R$ 10,00</p>
+                                <button class="produto-botao" onclick="interessado('Tortinha de Limão', 'R$ 10,00')">
+                                    💬 Tenho interesse
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="produto-card" data-categoria="lanches">
+                            <div class="produto-imagem">🥪</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Pão na Chapa com Manteiga</h3>
+                                <p class="produto-desc">Pão quentinho com manteiga derretida</p>
+                                <p class="produto-valor">R$ 7,50</p>
+                                <button class="produto-botao" onclick="interessado('Pão na Chapa', 'R$ 7,50')">
+                                    💬 Tenho interesse
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="produto-card" data-categoria="lanches">
+                            <div class="produto-imagem">🥓</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Pão com Ovo, Queijo e Bacon</h3>
+                                <p class="produto-desc">Completo, saboroso e bem servido</p>
+                                <p class="produto-valor">R$ 16,50</p>
+                                <button class="produto-botao" onclick="interessado('Pão com Ovo, Queijo e Bacon', 'R$ 16,50')">
+                                    💬 Tenho interesse
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="produto-card" data-categoria="bebidas">
+                            <div class="produto-imagem">☕</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Café com Leite</h3>
+                                <p class="produto-desc">O clássico que não pode faltar</p>
+                                <p class="produto-valor">R$ 5,00</p>
+                                <button class="produto-botao" onclick="interessado('Café com Leite', 'R$ 5,00')">
+                                    💬 Tenho interesse
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="produto-card" data-categoria="bebidas">
+                            <div class="produto-imagem">🍫</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Chocolate Gelado Batido</h3>
+                                <p class="produto-desc">Cremoso, geladinho e delicioso</p>
+                                <p class="produto-valor">R$ 10,00</p>
+                                <button class="produto-botao" onclick="interessado('Chocolate Gelado Batido', 'R$ 10,00')">
+                                    💬 Tenho interesse
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PÁGINA CONTATO / PEDIDO -->
+            <section class="pagina" id="pagina-contato">
+                <div class="secao">
+                    <h2 class="categoria-titulo">Fazer Pedido</h2>
+                    <div class="sobre-conteudo">
+                        <div class="form-secao">
+                            <h3 style="margin-bottom: 1.5rem;">📬 Fale Conosco</h3>
+                            <p style="margin-bottom: 1.5rem;">Faça seu pedido pelo WhatsApp! Sua mensagem já vem com seu nome identificado, facilitando tudo.</p>
+                            <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+                                <a href="https://www.instagram.com/padariavilamoreira" target="_blank" class="botao botao-secundario" style="justify-content: center;">
+                                    📷 @padariavilamoreira
+                                </a>
+                                <a href="#" onclick="abrirWhatsContato(); return false;" class="botao botao-whatsapp" style="justify-content: center;">
+                                    💬 Fazer Pedido no WhatsApp
+                                </a>
+                            </div>
+                            <div class="info-caixa">
+                                <div class="info-item">
+                                    <div class="info-titulo">📍 Endereço</div>
+                                    <div>Rua Silvestre Vasconcelos Calmon, 137 — Vila Pedro Moreira<br>Guarulhos – SP | CEP: 07020-001</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-titulo">📞 Telefone / WhatsApp</div>
+                                    <div>(11) 2409-3731</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-titulo">⏰ Funcionamento</div>
+                                    <div>Segunda a Sábado: 5h às 22h<br>Domingo: 5h30 às 20h</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- RODAPÉ -->
+        <footer class="rodape">
+            <p><strong>Padaria Vila Moreira</strong> — Desde 1967, o sabor que faz parte da sua manhã ☀️</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Rua Silvestre Vasconcelos Calmon, 137 — Guarulhos/SP | WhatsApp: (11) 2409-3731</p>
+            <div class="redes">
+                <a href="https://www.instagram.com/padariavilamoreira" target="_blank" class="rede-link" title="Instagram">📷</a>
+                <a href="https://www.facebook.com/search/top?q=padaria%20vila%20moreira" target="_blank" class="rede-link" title="Facebook">📘</a>
+                <a href="#" onclick="abrirWhatsContato(); return false;" class="rede-link" title="WhatsApp">💬</a>
+            </div>
+        </footer>
+
+    </div>
 
     <script>
-        let nomeCliente = localStorage.getItem('nomeVilaMoreira') || '';
+        // ==========================================================
+        // CONTROLE DE ENTRADA — SEM ALTERAÇÃO DEPOIS DE SALVO
+        // ==========================================================
+        const CHAVE_DADOS_USUARIO = 'padaria_vila_moreira_usuario';
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const campo = document.getElementById('campoNome');
-            if (nomeCliente) {
-                campo.value = nomeCliente;
-                document.getElementById('avisoNome').classList.add('mostrar');
-            }
-        });
-
-        function salvarNome(valor) {
-            nomeCliente = valor.trim();
-            localStorage.setItem('nomeVilaMoreira', nomeCliente);
-            const aviso = document.getElementById('avisoNome');
-            aviso.classList.toggle('mostrar', nomeCliente.length > 0);
+        function gerarIdentificador() {
+            return Math.floor(Math.random() * 9000 + 1000);
         }
 
-        // Transições entre páginas funcionando de novo!
-        function irParaPagina(id) {
-            event.preventDefault();
+        function getDadosUsuario() {
+            const dados = localStorage.getItem(CHAVE_DADOS_USUARIO);
+            return dados ? JSON.parse(dados) : null;
+        }
 
-            // Esconde a página atual
-            document.querySelectorAll('.pagina').forEach(pag => {
-                pag.classList.remove('ativa');
+        function validarNomeCompleto(nome) {
+            const limpo = nome.trim();
+            if (limpo.length < 5 || !limpo.includes(' ')) return false;
+            const regex = /^[A-Za-zÀ-ÿ\s]+$/;
+            return regex.test(limpo);
+        }
+
+        function salvarUsuario(nomeCompleto) {
+            const dados = {
+                nome: nomeCompleto.trim(),
+                id: gerarIdentificador()
+            };
+            localStorage.setItem(CHAVE_DADOS_USUARIO, JSON.stringify(dados));
+            return dados;
+        }
+
+        function getNomeExibicao() {
+            const usuario = getDadosUsuario();
+            if (!usuario) return '';
+            return `${usuario.nome} #${usuario.id}`;
+        }
+
+        function getSaudacao() {
+            const usuario = getDadosUsuario();
+            if (!usuario) return 'Olá! ';
+            return `Olá! Eu sou ${usuario.nome} (ID: ${usuario.id}). `;
+        }
+
+        function liberarSite() {
+            const usuario = getDadosUsuario();
+            if (!usuario) return;
+
+            document.getElementById('telaEntrada').classList.add('oculta');
+            document.getElementById('conteudoSite').classList.add('visivel');
+
+            document.getElementById('saudacaoUsuario').innerHTML = 
+                `👋 Olá, ${usuario.nome}! <span class="identificador-usuario">#${usuario.id}</span>`;
+
+            document.getElementById('nomeUsuarioExibicao').textContent = getNomeExibicao();
+        }
+
+        // ==========================================================
+        // INICIALIZAÇÃO
+        // ==========================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            if (getDadosUsuario()) {
+                liberarSite();
+            }
+
+            document.getElementById('botaoEntrar').addEventListener('click', () => {
+                const campo = document.getElementById('campoNomeCompleto');
+                const nomeDigitado = campo.value;
+
+                if (validarNomeCompleto(nomeDigitado)) {
+                    salvarUsuario(nomeDigitado);
+                    liberarSite();
+                } else {
+                    campo.classList.add('invalido');
+                    document.getElementById('avisoErroEntrada').classList.add('mostrar');
+                    campo.focus();
+                }
             });
 
-            // Mostra a nova página com transição suave
+            document.getElementById('campoNomeCompleto').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    document.getElementById('botaoEntrar').click();
+                }
+            });
+
+            document.getElementById('campoNomeCompleto').addEventListener('input', () => {
+                document.getElementById('campoNomeCompleto').classList.remove('invalido');
+                document.getElementById('avisoErroEntrada').classList.remove('mostrar');
+            });
+        });
+
+        // ==========================================================
+        // NAVEGAÇÃO
+        // ==========================================================
+        function irParaPagina(id) {
+            event.preventDefault();
+            document.querySelectorAll('.pagina').forEach(pag => pag.classList.remove('ativa'));
             setTimeout(() => {
                 const alvo = document.getElementById(`pagina-${id}`);
                 if (alvo) alvo.classList.add('ativa');
             }, 60);
-
             document.getElementById('menuPrincipal').classList.remove('aberto');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -861,23 +1073,32 @@
             document.getElementById('menuPrincipal').classList.toggle('aberto');
         }
 
+        // ==========================================================
+        // FILTRO DE PRODUTOS
+        // ==========================================================
         function filtrarCategoria(categoria, botao) {
             document.querySelectorAll('.categoria-botao').forEach(btn => btn.classList.remove('ativa'));
             botao.classList.add('ativa');
-
             document.querySelectorAll('.produto-card').forEach(card => {
                 const pertence = card.dataset.categoria === categoria || categoria === 'todos';
                 card.classList.toggle('escondido', !pertence);
             });
         }
 
+        // ==========================================================
+        // WHATSAPP — NÚMERO REAL DA PADARIA
+        // ==========================================================
+        // ⚠️ COLOQUE O NÚMERO REAL AQUI: DDD + NÚMERO (apenas dígitos)
+        const NUMERO_WHATSAPP = '551124093731';
+
         function interessado(nomeProduto, precoProduto) {
-            let saudacao = nomeCliente ? `Olá! Eu sou ${nomeCliente}. ` : 'Olá! ';
-            const mensagem = `${saudacao}estava de olho nos produtos de vocês e gostaria de saber mais sobre: ${nomeProduto} — ${precoProduto}.`;
-            const mensagemCodificada = encodeURIComponent(mensagem);
-            const numeroWhats = '5511999999999';
-            const url = `https://wa.me/${numeroWhats}?text=${mensagemCodificada}`;
-            window.open(url, '_blank');
+            const mensagem = `${getSaudacao()}vi o produto ${nomeProduto} — ${precoProduto}. Gostaria de saber mais informações ou fazer o pedido.`;
+            window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`, '_blank');
+        }
+
+        function abrirWhatsContato() {
+            const mensagem = `${getSaudacao()}conheci o site da Padaria Vila Moreira e gostaria de fazer um pedido ou tirar uma dúvida.`;
+            window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`, '_blank');
         }
     </script>
 </body>
