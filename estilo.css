@@ -262,6 +262,7 @@ h1, h2, h3 {
     min-height: 100%;
 }
 
+/* ===== ANTES (sem transição) =====
 .pagina {
     opacity: 0;
     transform: translateY(20px);
@@ -274,6 +275,40 @@ h1, h2, h3 {
     transform: translateY(0);
     display: block;
 }
+*/
+
+/* ===== DEPOIS (com transição suave em todos os aparelhos) ===== */
+.pagina {
+    opacity: 0;
+    transform: translateY(20px);
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: 
+        opacity 0.55s ease-in-out,
+        transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.55s ease-in-out;
+    pointer-events: none;
+}
+
+.pagina.ativa {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    position: relative;
+    pointer-events: auto;
+}
+
+.conteudo-principal {
+    flex: 1;
+    padding-top: 65px;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
 
 .secao {
     padding: 2rem 1rem;
