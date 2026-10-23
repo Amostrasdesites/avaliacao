@@ -810,3 +810,52 @@ cesso);
         margin-top: 0.5rem;
     }
 }
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--cor-fundo);
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.8rem;
+        display: none;
+        box-shadow: 0 8px 12px rgba(0,0,0,0.05);
+    }
+
+    .nav-links.aberto {
+        display: flex;
+    }
+
+    .menu-botao {
+        display: block;
+    }
+
+    .secao {
+        padding: 1.5rem 1rem;
+    }
+
+    .saudacao-usuario {
+        order: 3;
+        width: 100%;
+        text-align: center;
+        margin-top: 0.4rem;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 2rem 1rem;
+    }
+
+    /* IMPORTANTE: Páginas ficam relativas no celular também */
+    .pagina {
+        position: absolute;
+    }
+    
+    .pagina.ativa {
+        position: relative;
+    }
+}
+
