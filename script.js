@@ -105,14 +105,19 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================================
 function irParaPagina(id) {
     event.preventDefault();
-    document.querySelectorAll('.pagina').forEach(pag => pag.classList.remove('ativa'));
+    // Remove ativa de todas
+    document.querySelectorAll('.pagina').forEach(pag => {
+        pag.classList.remove('ativa');
+    });
+    // Adiciona ativa na página alvo — com pequeno delay para a transição pegar
     setTimeout(() => {
         const alvo = document.getElementById(`pagina-${id}`);
         if (alvo) alvo.classList.add('ativa');
-    }, 60);
+    }, 30);
     document.getElementById('menuPrincipal').classList.remove('aberto');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
 
 function alternarMenu() {
     document.getElementById('menuPrincipal').classList.toggle('aberto');
