@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padaria Vila Moreira — Desde 1967 | Guarulhos/SP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <!-- TELA DE ENTRADA -->
+    <div class="tela-entrada" id="telaEntrada">
+        <div class="caixa-entrada">
+            <div class="icone-entrada">🥖</div>
+            <h1>Bem-vindo(a) à Padaria Vila Moreira!</h1>
+            <p class="subtitulo">Digite seu nome completo para acessar nosso catálogo e fazer pedidos</p>
+            
+            <input 
+                type="text" 
+                id="campoNomeCompleto" 
+                class="campo-entrada" 
+                placeholder="Ex: Maria da Silva Souza"
+                autocomplete="name"
+            >
+            
+            <p class="aviso-erro-entrada" id="avisoErroEntrada">
+                ⚠️ Por favor, digite seu nome completo (nome e sobrenome)
+            </p>
+            
+            <button class="botao-entrada" id="botaoEntrar">Entrar e Ver Produtos</button>
+            
+            <p class="dica-entrada">✅ Seu acesso fica salvo automaticamente</p>
+            <p class="info-mesmonome">Mesmo nome de outra pessoa? Sem problema! Cada cliente recebe um número único.</p>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO DO SITE -->
+    <div class="conteudo-site" id="conteudoSite">
+
+        <!-- Navegação -->
+        <nav class="navegacao">
+            <div class="nav-conteudo">
+                <a href="#" class="logo" onclick="irParaPagina('inicio')">🥖 Vila Moreira</a>
+                <span class="saudacao-usuario" id="saudacaoUsuario">👋 Bem-vindo(a)!</span>
+                <button class="menu-botao" onclick="alternarMenu()">☰</button>
+                <ul class="nav-links" id="menuPrincipal">
+                    <li><a href="#" onclick="irParaPagina('inicio')">Início</a></li>
+                    <li><a href="#" onclick="irParaPagina('sobre')">Conheça Nós</a></li>
+                    <li><a href="#" onclick="irParaPagina('catalogo')">Catálogo</a></li>
+                    <li><a href="#" onclick="irParaPagina('contato')">Fazer Pedido</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Conteúdo Principal -->
+        <main class="conteudo-principal">
+            <!-- PÁGINA INÍCIO -->
+            <section class="pagina ativa" id="pagina-inicio">
+                <div class="hero">
+                    <div class="hero-destaque">✨ Desde 1967 — A tradição de Guarulhos</div>
+                    <h1>Padaria Vila Moreira</h1>
+                    <p class="hero-subtitulo">Pães fresquinhos, bolos caseiros, salgados quentes e aquele café que faz a diferença. Feito com amor, todos os dias.</p>
+                    <div class="botoes-acao">
+                        <a href="#" class="botao botao-primario" onclick="irParaPagina('catalogo')">🛒 Ver Catálogo</a>
+                        <a href="#" class="botao botao-whatsapp" onclick="abrirWhatsContato()">💬 Fazer Pedido</a>
+                    </div>
+                </div>
+
+                <div class="secao">
+                    <div class="sobre-conteudo">
+                        <div class="sobre-texto">
+                            <h2>Seja muito bem-vindo(a)!</h2>
+                            <p>Estamos no coração do bairro Vila Pedro Moreira, em Guarulhos, servindo você desde 1967.</p>
+                            <p class="destaque-ano">Mais de 55 anos de sabor e tradição ❤️</p>
+                            <p>Pães saídos do forno o dia todo, receitas caseiras, ingredientes selecionados e aquele atendimento amigo que você merece.</p>
+                            <p>Faça seu pedido pelo WhatsApp ou venha nos visitar! Estamos de portas abertas para receber você e sua família.</p>
+                        </div>
+                        <div class="info-caixa">
+                            <div class="info-item">
+                                <div class="info-titulo">📍 Endereço</div>
+                                <div>Rua Silvestre Vasconcelos Calmon, 137<br>Vila Pedro Moreira, Guarulhos — SP<br>CEP: 07020-001</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-titulo">⏰ Funcionamento</div>
+                                <div>Segunda a Sábado: 5h às 22h<br>Domingo: 5h30 às 20h</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-titulo">📞 WhatsApp / Telefone</div>
+                                <div>(11) 9999-9999</div>
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <a href="#" class="botao botao-whatsapp" onclick="abrirWhatsContato()" style="width: 100%; justify-content: center;">💬 Falar Agora</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PÁGINA SOBRE -->
+            <section class="pagina" id="pagina-sobre">
+                <div class="secao">
+                    <h2 class="categoria-titulo">Nossa História</h2>
+                    <div class="sobre-conteudo">
+                        <div class="sobre-texto">
+                            <p>A Padaria Vila Moreira nasceu em <strong>1967</strong>, aqui no bairro de Vila Pedro Moreira, em Guarulhos. Há mais de cinco décadas, fazemos parte da sua rotina e do coração da comunidade.</p>
+                            <p>Mantemos viva a tradição do pão francês quentinho, do café forte e da comida feita na hora, com receitas que passam de geração em geração.</p>
+                            <p>Hoje, como há 55 anos, abrimos às 5h da manhã para receber você. Seja para o café antes do trabalho, o lanche da tarde ou aquele pãozinho para levar para casa — estamos sempre aqui, de portas abertas.</p>
+                            <p class="destaque-ano">Venha nos conhecer! É mais do que uma padaria. É a sua casa. 🥖</p>
+                        </div>
+                        <div class="info-caixa">
+                            <h3 style="margin-bottom: 1rem;">📋 Informações</h3>
+                            <div class="info-item">
+                                <div class="info-titulo">Desde</div>
+                                <div>1967 — 55+ anos de tradição</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-titulo">Onde Estamos</div>
+                                <div>Rua Silvestre Vasconcelos Calmon, 137<br>Vila Pedro Moreira — Guarulhos/SP</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-titulo">Horário</div>
+                                <div>Seg–Sáb: 5h–22h<br>Domingo: 5h30–20h</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-titulo">Avaliação</div>
+                                <div>⭐ 4.5 — mais de 430 avaliações no Google</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PÁGINA CATÁLOGO -->
+            <section class="pagina" id="pagina-catalogo">
+                <div class="secao">
+                    <h2 class="categoria-titulo">Nosso Catálogo</h2>
+
+                    <div class="form-secao">
+                        <h3 style="margin-bottom: 1rem;">👋 Olá!</h3>
+                        <div class="aviso-nome">
+                            ✅ Identificado(a) como: <strong id="nomeUsuarioExibicao"></strong>
+                        </div>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem;">
+                            Clique em "Tenho interesse" em qualquer produto e já enviamos sua mensagem pelo WhatsApp!
+                        </p>
+                    </div>
+
+                    <div class="categorias">
+                        <button class="categoria-botao ativa" onclick="filtrarCategoria('todos', this)">Todos</button>
+                        <button class="categoria-botao" onclick="filtrarCategoria('paes', this)">Pães</button>
+                        <button class="categoria-botao" onclick="filtrarCategoria('doces', this)">Doces & Bolos</button>
+                        <button class="categoria-botao" onclick="filtrarCategoria('lanches', this)">Lanches</button>
+                        <button class="categoria-botao" onclick="filtrarCategoria('bebidas', this)">Bebidas</button>
+                    </div>
+
+                    <div class="grade-produtos" id="gradeProdutos">
+                        <!-- PÃES -->
+                        <div class="produto-card" data-categoria="paes">
+                            <div class="produto-imagem">🥖</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Pão Francês</h3>
+                                <p class="produto-desc">Crocante por fora, macio por dentro — saído do forno</p>
+                                <p class="produto-valor">R$ 0,80 / unidade</p>
+                                <button class="produto-botao" onclick="interessado('Pão Francês', 'R$ 0,80 / unidade')">💬 Tenho interesse</button>
+                            </div>
+                        </div>
+                        <div class="produto-card" data-categoria="paes">
+                            <div class="produto-imagem">🍞</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Pão de Leite</h3>
+                                <p class="produto-desc">Fofinho, doce na medida — perfeito para o café</p>
+                                <p class="produto-valor">R$ 6,00 / unidade</p>
+                                <button class="produto-botao" onclick="interessado('Pão de Leite', 'R$ 6,00 / unidade')">💬 Tenho interesse</button>
+                            </div>
+                        </div>
+                        <!-- DOCES -->
+                        <div class="produto-card" data-categoria="doces">
+                            <div class="produto-imagem">🍫</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Bomba de Ovomaltine</h3>
+                                <p class="produto-desc">Recheada, cremosa e irresistível</p>
+                                <p class="produto-valor">R$ 10,00</p>
+                                <button class="produto-botao" onclick="interessado('Bomba de Ovomaltine', 'R$ 10,00')">💬 Tenho interesse</button>
+                            </div>
+                        </div>
+                        <div class="produto-card" data-categoria="doces">
+                            <div class="produto-imagem">🍰</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Tortinha de Limão</h3>
+                                <p class="produto-desc">Azedinha, fresquinha e caseira</p>
+                                <p class="produto-valor">R$ 10,00</p>
+                                <button class="produto-botao" onclick="interessado('Tortinha de Limão', 'R$ 10,00')">💬 Tenho interesse</button>
+                            </div>
+                        </div>
+                        <!-- LANCHES -->
+                        <div class="produto-card" data-categoria="lanches">
+                            <div class="produto-imagem">🥪</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Pão na Chapa com Manteiga</h3>
+                                <p class="produto-desc">Pão quentinho com manteiga derretida</p>
+                                <p class="produto-valor">R$ 7,50</p>
+                                <button class="produto-botao" onclick="interessado('Pão na Chapa', 'R$ 7,50')">💬 Tenho interesse</button>
+                            </div>
+                        </div>
+                        <div class="produto-card" data-categoria="lanches">
+                            <div class="produto-imagem">🥓</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Pão com Ovo, Queijo e Bacon</h3>
+                                <p class="produto-desc">Completo, saboroso e bem servido</p>
+                                <p class="produto-valor">R$ 16,50</p>
+                                <button class="produto-botao" onclick="interessado('Pão com Ovo, Queijo e Bacon', 'R$ 16,50')">💬 Tenho interesse</button>
+                            </div>
+                        </div>
+                        <!-- BEBIDAS -->
+                        <div class="produto-card" data-categoria="bebidas">
+                            <div class="produto-imagem">☕</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Café com Leite</h3>
+                                <p class="produto-desc">O clássico que não pode faltar</p>
+                                <p class="produto-valor">R$ 5,00</p>
+                                <button class="produto-botao" onclick="interessado('Café com Leite', 'R$ 5,00')">💬 Tenho interesse</button>
+                            </div>
+                        </div>
+                        <div class="produto-card" data-categoria="bebidas">
+                            <div class="produto-imagem">🍫</div>
+                            <div class="produto-conteudo">
+                                <h3 class="produto-nome">Chocolate Gelado Batido</h3>
+                                <p class="produto-desc">Cremoso, geladinho e delicioso</p>
+                                <p class="produto-valor">R$ 10,00</p>
+                                <button class="produto-botao" onclick="interessado('Chocolate Gelado Batido', 'R$ 10,00')">💬 Tenho interesse</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PÁGINA CONTATO / PEDIDO -->
+            <section class="pagina" id="pagina-contato">
+                <div class="secao">
+                    <h2 class="categoria-titulo">Fazer Pedido</h2>
+                    <div class="sobre-conteudo">
+                        <div class="form-secao">
+                            <h3 style="margin-bottom: 1.5rem;">📬 Fale Conosco</h3>
+                            <p style="margin-bottom: 1.5rem;">Faça seu pedido pelo WhatsApp! Sua mensagem já vem com seu nome identificado, facilitando tudo.</p>
+                            <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+                                <a href="https://www.instagram.com/padariavilamoreira" target="_blank" class="botao botao-secundario" style="justify-content: center;">📷 @padariavilamoreira</a>
+                                <a href="#" onclick="abrirWhatsContato(); return false;" class="botao botao-whatsapp" style="justify-content: center;">💬 Fazer Pedido no WhatsApp</a>
+                            </div>
+                            <div class="info-caixa">
+                                <div class="info-item">
+                                    <div class="info-titulo">📍 Endereço</div>
+                                    <div>Rua Silvestre Vasconcelos Calmon, 137 — Vila Pedro Moreira<br>Guarulhos – SP | CEP: 07020-001</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-titulo">📞 Telefone / WhatsApp</div>
+                                    <div>(11) 9999-9999</div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-titulo">⏰ Funcionamento</div>
+                                    <div>Segunda a Sábado: 5h às 22h<br>Domingo: 5h30 às 20h</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- RODAPÉ -->
+        <footer class="rodape">
+            <p><strong>Padaria Vila Moreira</strong> — Desde 1967, o sabor que faz parte da sua manhã ☀️</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Rua Silvestre Vasconcelos Calmon, 137 — Guarulhos/SP | WhatsApp: (11) 9999-9999</p>
+            <div class="redes">
+                <a href="https://www.instagram.com/padariavilamoreira" target="_blank" class="rede-link" title="Instagram">📷</a>
+                <a href="https://www.facebook.com/search/top?q=padaria%20vila%20moreira" target="_blank" class="rede-link" title="Facebook">📘</a>
+                <a href="#" onclick="abrirWhatsContato(); return false;" class="rede-link" title="WhatsApp">💬</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
